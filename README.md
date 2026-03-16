@@ -1,7 +1,7 @@
-# Live Math Tutor - Gemini Live Agent Challenge
+# Seethmatics - Gemini Live Agent Challenge
 
 ## Overview
-Live Math Tutor is a real-time, multimodal AI teaching assistant built for the **Gemini Live Agent Challenge**. It moves beyond the traditional text box by utilizing the Gemini Live API to "see" a student's handwritten math problems via their webcam and "speak" to them using real-time audio. 
+Seethmatics is a real-time, multimodal AI teaching assistant built for the **Gemini Live Agent Challenge**. It moves beyond the traditional text box by utilizing the Gemini Live API to "see" a student's handwritten math problems via their webcam and "speak" to them using real-time audio. 
 
 Instead of just giving the answer, the tutor acts as a true educator: it observes the student's work, provides spoken guidance, and uses tool calling to write out the mathematical steps on a digital blackboard using LaTeX.
 
@@ -30,8 +30,8 @@ To run this project locally and reproduce the environment for judging, follow th
 
 1. **Clone the repository:**
    ```bash
-   git clone <YOUR_REPO_URL>
-   cd live-math-tutor
+   git clone https://github.com/shraf2004/Seethmatics.git
+   cd Seethmatics
    ```
 
 2. **Install dependencies:**

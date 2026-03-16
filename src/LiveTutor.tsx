@@ -29,7 +29,7 @@ const SYSTEM_INSTRUCTION = `You are an expert math tutor. You can see the user's
 export default function LiveTutor() {
   const [isConnected, setIsConnected] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
-  const [screenText, setScreenText] = useState<string>('Welcome to Live Math Tutor!\n\nShow a math problem to the camera and say hello to start.');
+  const [screenText, setScreenText] = useState<string>('Welcome to Seethmatics!\n\nShow a math problem to the camera and say hello to start.');
   const [error, setError] = useState<string | null>(null);
   
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -332,7 +332,7 @@ export default function LiveTutor() {
     } catch (err: any) {
       console.error("Failed to start session:", err);
       if (err.name === 'NotAllowedError' || err.message === 'Permission denied') {
-        setError("Camera and microphone access was denied. Please allow access in your browser settings to use the Live Tutor.");
+        setError("Camera and microphone access was denied. Please allow access in your browser settings to use Seethmatics.");
       } else {
         setError(err.message || "Failed to start session");
       }
@@ -353,7 +353,7 @@ export default function LiveTutor() {
           <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
             <span className="font-bold text-white">AI</span>
           </div>
-          <h1 className="text-xl font-semibold tracking-tight">Live Math Tutor</h1>
+          <h1 className="text-xl font-semibold tracking-tight">Seethmatics</h1>
         </div>
         
         <div className="flex items-center gap-4">
