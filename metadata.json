@@ -1,0 +1,5 @@
+{
+  "name": "Live Math Tutor",
+  "description": "An interactive live math tutor using Gemini Live API with multimodal capabilities.",
+  "requestFramePermissions": ["camera", "microphone"]
+}

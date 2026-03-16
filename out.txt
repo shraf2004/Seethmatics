@@ -1,0 +1,217 @@
+export declare interface AutomaticFunctionCallingConfig {
+    /** Whether to disable automatic function calling.
+     If not set or set to False, will enable automatic function calling.
+     If set to True, will disable automatic function calling.
+     */
+    disable?: boolean;
+--
+    input: Array<Content_2> | string | Array<Turn> | TextContent | ImageContent | AudioContent | DocumentContent | VideoContent | ThoughtContent | FunctionCallContent | FunctionResultContent | CodeExecutionCallContent | CodeExecutionResultContent | URLContextCallContent | URLContextResultContent | GoogleSearchCallContent | GoogleSearchResultContent | MCPServerToolCallContent | MCPServerToolResultContent | FileSearchCallContent | FileSearchResultContent;
+    /**
+     * Body param: Configuration parameters for the agent interaction.
+     */
+    agent_config?: DynamicAgentConfig | DeepResearchAgentConfig;
+    /**
+--
+    input: Array<Content_2> | string | Array<Turn> | TextContent | ImageContent | AudioContent | DocumentContent | VideoContent | ThoughtContent | FunctionCallContent | FunctionResultContent | CodeExecutionCallContent | CodeExecutionResultContent | URLContextCallContent | URLContextResultContent | GoogleSearchCallContent | GoogleSearchResultContent | MCPServerToolCallContent | MCPServerToolResultContent | FileSearchCallContent | FileSearchResultContent;
+    /**
+     * Body param: The name of the `Model` used for generating the interaction.
+     */
+    model: Model_2;
+    /**
+--
+    callTool(functionCalls: FunctionCall[]): Promise<Part[]>;
+}
+
+/**
+ * CallableToolConfig is the configuration for a callable tool.
+ */
+--
+declare type Content_2 = TextContent | ImageContent | AudioContent | DocumentContent | VideoContent | ThoughtContent | FunctionCallContent | FunctionResultContent | CodeExecutionCallContent | CodeExecutionResultContent | URLContextCallContent | URLContextResultContent | GoogleSearchCallContent | GoogleSearchResultContent | MCPServerToolCallContent | MCPServerToolResultContent | FileSearchCallContent | FileSearchResultContent;
+
+declare interface ContentDelta {
+    delta: ContentDelta.TextDelta | ContentDelta.ImageDelta | ContentDelta.AudioDelta | ContentDelta.DocumentDelta | ContentDelta.VideoDelta | ContentDelta.ThoughtSummaryDelta | ContentDelta.ThoughtSignatureDelta | ContentDelta.FunctionCallDelta | ContentDelta.FunctionResultDelta | ContentDelta.CodeExecutionCallDelta | ContentDelta.CodeExecutionResultDelta | ContentDelta.URLContextCallDelta | ContentDelta.URLContextResultDelta | ContentDelta.GoogleSearchCallDelta | ContentDelta.GoogleSearchResultDelta | ContentDelta.MCPServerToolCallDelta | ContentDelta.MCPServerToolResultDelta | ContentDelta.FileSearchCallDelta | ContentDelta.FileSearchResultDelta;
+    event_type: 'content.delta';
+    index: number;
+    /**
+     * The event_id token to be used to resume the interaction stream, from this event.
+     */
+--
+    interface FunctionCallDelta {
+        /**
+         * A unique ID for this specific tool call.
+         */
+        id: string;
+        arguments: {
+--
+ * Creates a `Part` object from a `FunctionCall` object.
+ */
+export declare function createPartFromFunctionCall(name: string, args: Record<string, unknown>): Part;
+
+/**
+ * Creates a `Part` object from a `FunctionResponse` object.
+ */
+export declare function createPartFromFunctionResponse(id: string, name: string, response: Record<string, unknown>, parts?: FunctionResponsePart[]): Part;
+--
+export declare interface FunctionCall {
+    /** The unique id of the function call. If populated, the client to execute the
+     `function_call` and return the response with the matching `id`. */
+    id?: string;
+    /** Optional. The function parameters and values in JSON object format. See [FunctionDeclaration.parameters] for parameter details. */
+    args?: Record<string, unknown>;
+--
+    /** Optional. Whether this is the last part of the FunctionCall. If true, another partial message for the current FunctionCall is expected to follow. This field is not supported in Gemini API. */
+    willContinue?: boolean;
+}
+
+/**
+ * A function tool call content block.
+--
+declare interface FunctionCallContent {
+    /**
+     * A unique ID for this specific tool call.
+     */
+    id: string;
+    /**
+--
+export declare interface FunctionCallingConfig {
+    /** Optional. Function names to call. Only set when the Mode is ANY. Function names should match [FunctionDeclaration.name]. With mode set to ANY, model will predict a function call from the set of function names provided. */
+    allowedFunctionNames?: string[];
+    /** Optional. Function calling mode. */
+    mode?: FunctionCallingConfigMode;
+    /** Optional. When set to true, arguments of a single function call will be streamed out in multiple parts/contents/responses. Partial parameter results will be returned in the [FunctionCall.partial_args] field. This field is not supported in Gemini API. */
+    streamFunctionCallArguments?: boolean;
+}
+
+/** Function calling mode. */
+export declare enum FunctionCallingConfigMode {
+    /**
+     * Unspecified function calling mode. This value should not be used.
+     */
+    MODE_UNSPECIFIED = "MODE_UNSPECIFIED",
+    /**
+--
+    /** Required. The name of the function to call. Matches [FunctionDeclaration.name] and [FunctionCall.name]. */
+    name?: string;
+    /** Required. The function response in JSON object format. Use "output" key to specify function output and "error" key to specify error details (if any). If "output" and "error" keys are not specified, then whole "response" is treated as function output. */
+    response?: Record<string, unknown>;
+}
+
+--
+    automaticFunctionCalling?: AutomaticFunctionCallingConfig;
+    /** The thinking features configuration.
+     */
+    thinkingConfig?: ThinkingConfig;
+    /** The image generation configuration.
+     */
+--
+    automaticFunctionCallingHistory?: Content[];
+    /** Output only. The model version used to generate the response. */
+    modelVersion?: string;
+    /** Output only. Content filter results for a prompt sent in the request. Note: Sent only in the first stream chunk. Only happens when no candidates were generated due to content violations. */
+    promptFeedback?: GenerateContentResponsePromptFeedback;
+    /** Output only. response_id is used to identify each response. It is the encoding of the event_id. */
+--
+     *           mode: FunctionCallingConfigMode.ANY,
+     *           allowedFunctionNames: ['controlLight'],
+     *         },
+     *       },
+     *     },
+     *   });
+--
+    get functionCalls(): FunctionCall[] | undefined;
+    /**
+     * Returns the first executable code from the first candidate in the response.
+     *
+     * @remarks
+     * If there are multiple candidates in the response, the executable code from
+--
+    input?: Array<Content_2> | string | Array<Turn> | TextContent | ImageContent | AudioContent | DocumentContent | VideoContent | ThoughtContent | FunctionCallContent | FunctionResultContent | CodeExecutionCallContent | CodeExecutionResultContent | URLContextCallContent | URLContextResultContent | GoogleSearchCallContent | GoogleSearchResultContent | MCPServerToolCallContent | MCPServerToolResultContent | FileSearchCallContent | FileSearchResultContent;
+    /**
+     * The name of the `Model` used for generating the interaction.
+     */
+    model?: Model_2;
+    /**
+--
+    export { type AllowedTools as AllowedTools, type Annotation as Annotation, type AudioContent as AudioContent, type CodeExecutionCallArguments as CodeExecutionCallArguments, type CodeExecutionCallContent as CodeExecutionCallContent, type CodeExecutionResultContent as CodeExecutionResultContent, type Content_2 as Content, type ContentDelta as ContentDelta, type ContentStart as ContentStart, type ContentStop as ContentStop, type DeepResearchAgentConfig as DeepResearchAgentConfig, type DocumentContent as DocumentContent, type DynamicAgentConfig as DynamicAgentConfig, type ErrorEvent_2 as ErrorEvent, type FileSearchCallContent as FileSearchCallContent, type FileSearchResultContent as FileSearchResultContent, type Function_2 as Function, type FunctionCallContent as FunctionCallContent, type FunctionResultContent as FunctionResultContent, type GenerationConfig_2 as GenerationConfig, type GoogleSearchCallArguments as GoogleSearchCallArguments, type GoogleSearchCallContent as GoogleSearchCallContent, type GoogleSearchResult as GoogleSearchResult, type GoogleSearchResultContent as GoogleSearchResultContent, type ImageConfig_2 as ImageConfig, type ImageContent as ImageContent, type Interaction as Interaction, type InteractionCompleteEvent as InteractionCompleteEvent, type InteractionSSEEvent as InteractionSSEEvent, type InteractionStartEvent as InteractionStartEvent, type InteractionStatusUpdate as InteractionStatusUpdate, type MCPServerToolCallContent as MCPServerToolCallContent, type MCPServerToolResultContent as MCPServerToolResultContent, type Model_2 as Model, type SpeechConfig_2 as SpeechConfig, type TextContent as TextContent, type ThinkingLevel_2 as ThinkingLevel, type ThoughtContent as ThoughtContent, type Tool_2 as Tool, type ToolChoiceConfig as ToolChoiceConfig, type ToolChoiceType as ToolChoiceType, type Turn as Turn, type URLContextCallArguments as URLContextCallArguments, type URLContextCallContent as URLContextCallContent, type URLContextResult as URLContextResult, type URLContextResultContent as URLContextResultContent, type Usage as Usage, type VideoContent as VideoContent, type InteractionDeleteResponse as InteractionDeleteResponse, type InteractionCreateParams as InteractionCreateParams, type CreateModelInteractionParamsNonStreaming as CreateModelInteractionParamsNonStreaming, type CreateModelInteractionParamsStreaming as CreateModelInteractionParamsStreaming, type CreateAgentInteractionParamsNonStreaming as CreateAgentInteractionParamsNonStreaming, type CreateAgentInteractionParamsStreaming as CreateAgentInteractionParamsStreaming, type InteractionDeleteParams as InteractionDeleteParams, type InteractionCancelParams as InteractionCancelParams, type InteractionGetParams as InteractionGetParams, type InteractionGetParamsNonStreaming as InteractionGetParamsNonStreaming, type InteractionGetParamsStreaming as InteractionGetParamsStreaming, };
+}
+
+declare namespace InteractionsAPI {
+    export {
+        BaseInteractions,
+--
+        FunctionCallContent,
+        FunctionResultContent,
+        GenerationConfig_2 as GenerationConfig,
+        GoogleSearchCallArguments,
+        GoogleSearchCallContent,
+        GoogleSearchResult,
+--
+ `FunctionCall` objects by the `id` field.
+
+ Note that in the unary and server-streaming GenerateContent APIs function
+ calling happens by exchanging the `Content` parts, while in the bidi
+ GenerateContent APIs function calling happens over this dedicated set of
+ messages. */
+--
+    functionCalls?: FunctionCall[];
+}
+
+/** Notification for the client that a previously issued `ToolCallMessage` with the specified `id`s should have been not executed and should be cancelled.
+
+ If there were side-effects to those tool calls, clients may attempt to undo
+--
+    functionCall?: FunctionCall;
+    /** Optional. The result of a function call. This is used to provide the model with the result of a function call that it predicted. */
+    functionResponse?: FunctionResponse;
+    /** Optional. The inline data content of the part. This can be used to include images, audio, or video in a request. */
+    inlineData?: Blob_2;
+    /** Optional. The text content of the part. When sent from the VSCode Gemini Code Assist extension, references to @mentioned items will be converted to markdown boldface text. For example `@my-repo` will be converted to and sent as `**my-repo**` by the IDE agent. */
+--
+    /** Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided. */
+    functionDeclarations?: FunctionDeclaration[];
+    /** Optional. Specialized retrieval tool that is powered by Google Search. */
+    googleSearchRetrieval?: GoogleSearchRetrieval;
+    /** Optional. If specified, Vertex AI will use Parallel.ai to search for information to answer user queries. The search results will be grounded on Parallel.ai and presented to the model for response generation. This field is not supported in Gemini API. */
+    parallelAiSearch?: ToolParallelAiSearch;
+--
+    functionCallingConfig?: FunctionCallingConfig;
+}
+
+export declare type ToolListUnion = ToolUnion[];
+
+/** ParallelAiSearch tool type. A tool that uses the Parallel.ai search engine for grounding. This data type is not supported in Gemini API. */
+--
+        createPartFromFunctionCall,
+        createPartFromFunctionResponse,
+        createPartFromBase64,
+        createPartFromCodeExecutionResult,
+        createPartFromExecutableCode,
+        createUserContent,
+--
+        FunctionCallingConfigMode,
+        ThinkingLevel,
+        PersonGeneration,
+        HarmCategory,
+        HarmBlockMethod,
+        HarmBlockThreshold,
+--
+        FunctionCall,
+        FunctionResponseBlob,
+        FunctionResponseFileData,
+        FunctionResponsePart,
+        FunctionResponse,
+        Blob_2 as Blob,
+--
+        FunctionCallingConfig,
+        ToolConfig,
+        ReplicatedVoiceConfig,
+        PrebuiltVoiceConfig,
+        VoiceConfig,
+        SpeakerVoiceConfig,
+--
+        AutomaticFunctionCallingConfig,
+        ThinkingConfig,
+        ImageConfigImageOutputOptions,
+        ImageConfig,
+        GenerationConfigRoutingConfigAutoRoutingMode,
+        GenerationConfigRoutingConfigManualRoutingMode,
